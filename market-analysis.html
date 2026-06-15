@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ рынка | PAYKOR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#162E53; --secondary:#46505F; --accent:#BC6A49; --ink:#1B2230; --light-bg:#F2F3F5; --white:#FFFFFF; --border:rgba(70,80,95,0.15); --shadow:0 8px 24px rgba(0,0,0,0.04); --transition:all 0.25s cubic-bezier(0.2,0.9,0.4,1.1); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Montserrat',sans-serif; background:var(--light-bg); color:var(--ink); line-height:1.6; }
+        h1,h2,h3 { font-weight:700; line-height:1.2; letter-spacing:-0.02em; color:var(--primary); }
+        h1 { font-size:3.2rem; margin-bottom:1.5rem; }
+        h2 { font-size:2.4rem; margin:3rem 0 2rem; }
+        p { margin-bottom:1rem; color:var(--secondary); }
+        .container { max-width:1200px; margin:0 auto; padding:0 2rem; }
+        .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.9rem 2.2rem; font-weight:600; text-decoration:none; transition:var(--transition); border:1.5px solid transparent; border-radius:40px; }
+        .btn-outline { background:transparent; border-color:var(--primary); color:var(--primary); }
+        .btn-outline:hover { background:var(--primary); color:var(--white); transform:translateY(-2px); }
+        .header { background:var(--white); box-shadow:0 1px 0 var(--border); padding:1.2rem 0; position:sticky; top:0; z-index:100; }
+        .header-container { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:0 2rem; flex-wrap:wrap; gap:1rem; }
+        .logo { display:flex; align-items:center; gap:0.6rem; text-decoration:none; cursor:pointer; }
+        .logo-icon svg { width:38px; height:38px; }
+        .logo-text { font-size:1.6rem; font-weight:800; color:var(--primary); }
+        .nav-links { display:flex; gap:2rem; align-items:center; flex-wrap:wrap; }
+        .nav-links a { text-decoration:none; color:var(--secondary); font-weight:600; font-size:0.95rem; }
+        .nav-links a:hover { color:var(--primary); }
+        .lang-switcher { display:flex; gap:0.5rem; margin-left:1rem; }
+        .lang-btn { background:none; border:none; font-weight:600; cursor:pointer; padding:0.3rem 0.6rem; border-radius:4px; color:var(--secondary); }
+        .lang-btn.active { background:var(--accent); color:white; }
+        .hero { padding:5rem 0 3rem; text-align:center; }
+        section { padding:4rem 0; }
+        .bg-white { background:var(--white); }
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; margin:3rem 0; }
+        .stat-item { text-align:center; padding:2rem; background:var(--white); border-radius:16px; box-shadow:var(--shadow); }
+        .stat-value { font-size:2.5rem; font-weight:700; margin-bottom:0.5rem; color:var(--accent); }
+        blockquote { border-left:4px solid var(--accent); padding:1.5rem 2rem; margin:2rem 0; background:var(--light-bg); border-radius:0 8px 8px 0; font-style:italic; }
+        .quote-author { display:block; margin-top:1rem; font-weight:600; color:var(--primary); }
+        footer { background:var(--ink); color:rgba(255,255,255,0.7); padding:3rem 0; text-align:center; font-size:0.9rem; }
+        @media (max-width:900px){ h1{font-size:2.6rem;} .header-container{flex-direction:column;} .container{padding:0 1.5rem;} }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <span class="logo" id="logoLink" style="cursor:pointer;"><span class="logo-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M28 14L14 34H24L20 44L38 20H28L28 14Z" fill="#162E53"/><path d="M32 10L16 34H24L20 44L38 18H32V10Z" fill="#46505F"/><circle cx="32" cy="12" r="1.5" fill="#BC6A49"/></svg></span><span class="logo-text">PAYKOR</span></span>
+        <div class="nav-links">
+            <a href="services.html" data-key="nav_services">Услуги</a>
+            <a href="market-analysis.html" data-key="nav_market">Анализ рынка</a>
+            <a href="pricing.html" data-key="nav_pricing">Цены</a>
+            <a href="index.html#about" data-key="nav_why">Почему мы</a>
+            <a href="index.html#contact" data-key="nav_contacts">Контакты</a>
+            <div class="lang-switcher"><button class="lang-btn" data-lang="ru">RU</button><button class="lang-btn" data-lang="tj">TJ</button><button class="lang-btn" data-lang="en">EN</button></div>
+        </div>
+    </div>
+</header>
+<section class="hero"><div class="container"><h1 data-key="title">Анализ бизнес-среды</h1><p data-key="subtitle">Актуальная информация для принятия стратегических решений</p></div></section>
+<section class="bg-white"><div class="container">
+    <h2 data-key="economy_title">Экономическая ситуация</h2>
+    <p data-key="economy_desc">Стабильный рост экономики создает благоприятные условия для развития бизнеса во всех отраслях. Увеличение потребительского спроса и инвестиционная активность открывают новые возможности для предпринимателей.</p>
+    <div class="stats-grid"><div class="stat-item"><div class="stat-value">5000+</div><div class="stat-label" data-key="stat1_label">Предприятий МСБ</div></div><div class="stat-item"><div class="stat-value">85%</div><div class="stat-label" data-key="stat2_label">Малого и среднего бизнеса</div></div><div class="stat-item"><div class="stat-value">25%</div><div class="stat-label" data-key="stat3_label">Ежегодный рост</div></div></div>
+    <h2 data-key="challenges_title">Ключевые вызовы для бизнеса</h2>
+    <ul><li><strong data-key="challenge1_title">Дефицит квалифицированных кадров</strong> <span data-key="challenge1_desc">в сфере ИТ, финансов и маркетинга</span></li><li><strong data-key="challenge2_title">Недостаток системного подхода</strong> <span data-key="challenge2_desc">к управлению бизнесом</span></li><li><strong data-key="challenge3_title">Ограниченный доступ</strong> <span data-key="challenge3_desc">к современным цифровым инструментам</span></li></ul>
+    <h2 data-key="opportunities_title">Возможности для роста</h2>
+    <ul><li><strong data-key="opp1_title">Цифровая трансформация</strong> <span data-key="opp1_desc">внедрение современных технологий</span></li><li><strong data-key="opp2_title">Рост потребительского рынка</strong> <span data-key="opp2_desc">увеличение доходов населения</span></li><li><strong data-key="opp3_title">Развитие экспортного потенциала</strong> <span data-key="opp3_desc">выход на международные рынки</span></li></ul>
+    <h2 data-key="recommendations_title">Рекомендации для бизнеса</h2>
+    <ol><li data-key="rec1"><strong>Инвестируйте в кадры</strong> - обучение и развитие персонала</li><li data-key="rec2"><strong>Используйте цифровые технологии</strong> - автоматизация процессов</li><li data-key="rec3"><strong>Сотрудничайте с экспертами</strong> - профессиональный консалтинг</li></ol>
+    <blockquote><p data-key="quote">"Бизнес-среда динамично развивается. Компании, которые инвестируют в инновации и персонал, получают значительное конкурентное преимущество."</p><span class="quote-author" data-key="quote_author">- Эксперт по стратегическому развитию</span></blockquote>
+</div></section>
+<footer><div class="container"><p data-key="footer_main">© 2026 PAYKOR. Комплексный консалтинг для бизнеса.</p></div></footer>
+<script>
+const translations = {
+    ru: { nav_services:"Услуги", nav_market:"Анализ рынка", nav_pricing:"Цены", nav_why:"Почему мы", nav_contacts:"Контакты", title:"Анализ бизнес-среды", subtitle:"Актуальная информация для принятия стратегических решений", economy_title:"Экономическая ситуация", economy_desc:"Стабильный рост экономики создает благоприятные условия для развития бизнеса во всех отраслях.", stat1_label:"Предприятий МСБ", stat2_label:"Малого и среднего бизнеса", stat3_label:"Ежегодный рост", challenges_title:"Ключевые вызовы для бизнеса", challenge1_title:"Дефицит квалифицированных кадров", challenge1_desc:"в сфере ИТ, финансов и маркетинга", challenge2_title:"Недостаток системного подхода", challenge2_desc:"к управлению бизнесом", challenge3_title:"Ограниченный доступ", challenge3_desc:"к современным цифровым инструментам", opportunities_title:"Возможности для роста", opp1_title:"Цифровая трансформация", opp1_desc:"внедрение современных технологий", opp2_title:"Рост потребительского рынка", opp2_desc:"увеличение доходов населения", opp3_title:"Развитие экспортного потенциала", opp3_desc:"выход на международные рынки", recommendations_title:"Рекомендации для бизнеса", rec1:"Инвестируйте в кадры - обучение и развитие персонала", rec2:"Используйте цифровые технологии - автоматизация процессов", rec3:"Сотрудничайте с экспертами - профессиональный консалтинг", quote:"Бизнес-среда динамично развивается. Компании, которые инвестируют в инновации и персонал, получают значительное конкурентное преимущество.", quote_author:"- Эксперт по стратегическому развитию", footer_main:"© 2026 PAYKOR. Комплексный консалтинг для бизнеса." },
+    tj: { nav_services:"Хизматрасонӣ", nav_market:"Таҳлили бозор", nav_pricing:"Нархҳо", nav_why:"Чаро мо", nav_contacts:"Тамос", title:"Таҳлили муҳити тиҷоратӣ", subtitle:"Маълумоти мубрам барои қабули қарорҳои стратегӣ", economy_title:"Вазъи иқтисодӣ", economy_desc:"Афзоиши устувори иқтисод шароити мусоид барои рушди тиҷорат дар ҳама соҳаҳоро фароҳам меорад.", stat1_label:"Корхонаҳои хурду миёна", stat2_label:"Тиҷорати хурду миёна", stat3_label:"Афзоиши солона", challenges_title:"Мушкилоти асосии тиҷорат", challenge1_title:"Камбуди кадрҳои соҳибихтисос", challenge1_desc:"дар соҳаи ИТ, молия ва маркетинг", challenge2_title:"Набудани равиши системавӣ", challenge2_desc:"ба идоракунии тиҷорат", challenge3_title:"Дастрасии маҳдуд", challenge3_desc:"ба воситаҳои муосири рақамӣ", opportunities_title:"Имкониятҳо барои рушд", opp1_title:"Трансформатсияи рақамӣ", opp1_desc:"татбиқи технологияҳои муосир", opp2_title:"Афзоиши бозори истеъмолӣ", opp2_desc:"афзоиши даромади аҳолӣ", opp3_title:"Рушди иқтидори содиротӣ", opp3_desc:"баромад ба бозорҳои байналмилалӣ", recommendations_title:"Тавсияҳо барои тиҷорат", rec1:"Дар кадрҳо сармоягузорӣ кунед - омӯзиш ва рушди кормандон", rec2:"Аз технологияҳои рақамӣ истифода баред - автоматикунонии равандҳо", rec3:"Бо коршиносон ҳамкорӣ кунед - машварати касбӣ", quote:"Муҳити тиҷоратӣ динамикӣ рушд мекунад. Ширкатҳое, ки ба инноватсияҳо ва кормандон сармоягузорӣ мекунанд, афзалияти рақобатпазирии назаррас ба даст меоранд.", quote_author:"- Коршиноси рушди стратегӣ", footer_main:"© 2026 PAYKOR. Машварати ҳамаҷониба барои тиҷорат." },
+    en: { nav_services:"Services", nav_market:"Market Analysis", nav_pricing:"Pricing", nav_why:"Why Us", nav_contacts:"Contacts", title:"Business Environment Analysis", subtitle:"Up-to-date information for strategic decision making", economy_title:"Economic Situation", economy_desc:"Stable economic growth creates favorable conditions for business development in all industries.", stat1_label:"SME Enterprises", stat2_label:"Small & Medium Business", stat3_label:"Annual Growth", challenges_title:"Key Business Challenges", challenge1_title:"Shortage of qualified personnel", challenge1_desc:"in IT, finance and marketing", challenge2_title:"Lack of systematic approach", challenge2_desc:"to business management", challenge3_title:"Limited access", challenge3_desc:"to modern digital tools", opportunities_title:"Growth Opportunities", opp1_title:"Digital transformation", opp1_desc:"implementation of modern technologies", opp2_title:"Consumer market growth", opp2_desc:"increasing population income", opp3_title:"Export potential development", opp3_desc:"entry to international markets", recommendations_title:"Business Recommendations", rec1:"Invest in people - training and staff development", rec2:"Use digital technologies - process automation", rec3:"Cooperate with experts - professional consulting", quote:"The business environment is dynamically developing. Companies that invest in innovation and personnel gain significant competitive advantage.", quote_author:"- Strategic Development Expert", footer_main:"© 2026 PAYKOR. Comprehensive business consulting." }
+};
+let currentLang = localStorage.getItem('paykor_lang') || 'ru';
+function applyLanguage(lang) { document.querySelectorAll('[data-key]').forEach(el => { const key = el.getAttribute('data-key'); if(translations[lang] && translations[lang][key]) el.innerText = translations[lang][key]; }); document.querySelectorAll('.lang-btn').forEach(btn => { if(btn.getAttribute('data-lang') === lang) btn.classList.add('active'); else btn.classList.remove('active'); }); localStorage.setItem('paykor_lang', lang); currentLang = lang; }
+document.querySelectorAll('.lang-btn').forEach(btn => { btn.addEventListener('click', () => { applyLanguage(btn.getAttribute('data-lang')); }); });
+document.getElementById('logoLink').addEventListener('click', function(e) { e.preventDefault(); window.location.href = 'index.html?lang=' + currentLang; });
+const urlParams = new URLSearchParams(window.location.search); const urlLang = urlParams.get('lang'); if(urlLang && (urlLang === 'ru' || urlLang === 'tj' || urlLang === 'en')) { localStorage.setItem('paykor_lang', urlLang); applyLanguage(urlLang); } else { applyLanguage(currentLang); }
+</script>
+</body>
+</html>

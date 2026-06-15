@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цены | PAYKOR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#162E53; --secondary:#46505F; --accent:#BC6A49; --ink:#1B2230; --light-bg:#F2F3F5; --white:#FFFFFF; --border:rgba(70,80,95,0.15); --shadow:0 8px 24px rgba(0,0,0,0.04); --transition:all 0.25s cubic-bezier(0.2,0.9,0.4,1.1); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Montserrat',sans-serif; background:var(--light-bg); color:var(--ink); line-height:1.6; }
+        h1,h2,h3 { font-weight:700; line-height:1.2; letter-spacing:-0.02em; color:var(--primary); }
+        h1 { font-size:3.2rem; margin-bottom:1.5rem; }
+        p { margin-bottom:1rem; color:var(--secondary); }
+        .container { max-width:1200px; margin:0 auto; padding:0 2rem; }
+        .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.9rem 2.2rem; font-weight:600; text-decoration:none; transition:var(--transition); border:1.5px solid transparent; border-radius:40px; }
+        .btn-primary { background:var(--primary); color:var(--white); }
+        .btn-primary:hover { background:transparent; border-color:var(--primary); color:var(--primary); transform:translateY(-2px); }
+        .header { background:var(--white); box-shadow:0 1px 0 var(--border); padding:1.2rem 0; position:sticky; top:0; z-index:100; }
+        .header-container { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:0 2rem; flex-wrap:wrap; gap:1rem; }
+        .logo { display:flex; align-items:center; gap:0.6rem; text-decoration:none; cursor:pointer; }
+        .logo-icon svg { width:38px; height:38px; }
+        .logo-text { font-size:1.6rem; font-weight:800; color:var(--primary); }
+        .nav-links { display:flex; gap:2rem; align-items:center; flex-wrap:wrap; }
+        .nav-links a { text-decoration:none; color:var(--secondary); font-weight:600; font-size:0.95rem; }
+        .nav-links a:hover { color:var(--primary); }
+        .lang-switcher { display:flex; gap:0.5rem; margin-left:1rem; }
+        .lang-btn { background:none; border:none; font-weight:600; cursor:pointer; padding:0.3rem 0.6rem; border-radius:4px; color:var(--secondary); }
+        .lang-btn.active { background:var(--accent); color:white; }
+        .hero { padding:5rem 0 3rem; text-align:center; }
+        section { padding:4rem 0; }
+        .bg-white { background:var(--white); }
+        .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-top:2rem; }
+        .pricing-card { background:var(--white); padding:2.5rem 2rem; border-radius:24px; box-shadow:var(--shadow); border:1px solid var(--border); text-align:center; transition:var(--transition); }
+        .pricing-card:hover { transform:translateY(-8px); border-color:var(--accent); }
+        .price { font-size:1.8rem; font-weight:700; color:var(--accent); margin:0 0 1.5rem; }
+        .pricing-features { list-style:none; margin:1.5rem 0; text-align:left; }
+        .pricing-features li { padding:0.5rem 0 0.5rem 1.8rem; position:relative; color:var(--secondary); border-bottom:1px solid var(--border); }
+        .pricing-features li::before { content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:700; }
+        footer { background:var(--ink); color:rgba(255,255,255,0.7); padding:3rem 0; text-align:center; font-size:0.9rem; }
+        @media (max-width:900px){ h1{font-size:2.6rem;} .header-container{flex-direction:column;} .container{padding:0 1.5rem;} }
+        @media (max-width:600px){ .pricing-grid { grid-template-columns:1fr; } }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <span class="logo" id="logoLink" style="cursor:pointer;"><span class="logo-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M28 14L14 34H24L20 44L38 20H28L28 14Z" fill="#162E53"/><path d="M32 10L16 34H24L20 44L38 18H32V10Z" fill="#46505F"/><circle cx="32" cy="12" r="1.5" fill="#BC6A49"/></svg></span><span class="logo-text">PAYKOR</span></span>
+        <div class="nav-links">
+            <a href="services.html" data-key="nav_services">Услуги</a>
+            <a href="market-analysis.html" data-key="nav_market">Анализ рынка</a>
+            <a href="pricing.html" data-key="nav_pricing">Цены</a>
+            <a href="index.html#about" data-key="nav_why">Почему мы</a>
+            <a href="index.html#contact" data-key="nav_contacts">Контакты</a>
+            <div class="lang-switcher"><button class="lang-btn" data-lang="ru">RU</button><button class="lang-btn" data-lang="tj">TJ</button><button class="lang-btn" data-lang="en">EN</button></div>
+        </div>
+    </div>
+</header>
+<section class="hero"><div class="container"><h1 data-key="pricing_title">Ценовая политика</h1><p data-key="pricing_subtitle">Индивидуальные условия для каждого клиента</p></div></section>
+<section class="bg-white"><div class="container"><div class="pricing-grid">
+    <div class="pricing-card"><h3 data-key="pack_start">Стартовый пакет</h3><div class="price" data-key="price_on_request">по запросу</div><ul class="pricing-features"><li data-key="start1">Базовая поддержка</li><li data-key="start2">Консультации по 2 направлениям</li><li data-key="start3">Ежемесячные отчеты</li><li data-key="start4">Email-поддержка</li></ul><a href="mailto:info@paykor.tj" class="btn btn-primary" data-key="contact_btn">Связаться</a></div>
+    <div class="pricing-card"><h3 data-key="pack_pro">Профессиональный пакет</h3><div class="price" data-key="price_on_request">по запросу</div><ul class="pricing-features"><li data-key="pro1">Полная поддержка</li><li data-key="pro2">Консультации по 4 направлениям</li><li data-key="pro3">Еженедельные отчеты</li><li data-key="pro4">Персональный менеджер</li><li data-key="pro5">Приоритетная поддержка</li></ul><a href="mailto:info@paykor.tj" class="btn btn-primary" data-key="contact_btn">Связаться</a></div>
+    <div class="pricing-card"><h3 data-key="pack_premium">Премиум пакет</h3><div class="price" data-key="price_on_request">по запросу</div><ul class="pricing-features"><li data-key="prem1">Комплексная поддержка</li><li data-key="prem2">Консультации по всем направлениям</li><li data-key="prem3">Круглосуточная поддержка</li><li data-key="prem4">Стратегические сессии</li><li data-key="prem5">BI-аналитика</li></ul><a href="mailto:info@paykor.tj" class="btn btn-primary" data-key="contact_btn">Связаться</a></div>
+</div></div></section>
+<footer><div class="container"><p data-key="footer_main">© 2026 PAYKOR. Комплексный консалтинг для бизнеса.</p></div></footer>
+<script>
+const translations = {
+    ru: { nav_services:"Услуги", nav_market:"Анализ рынка", nav_pricing:"Цены", nav_why:"Почему мы", nav_contacts:"Контакты", pricing_title:"Ценовая политика", pricing_subtitle:"Индивидуальные условия для каждого клиента", pack_start:"Стартовый пакет", pack_pro:"Профессиональный пакет", pack_premium:"Премиум пакет", price_on_request:"по запросу", start1:"Базовая поддержка", start2:"Консультации по 2 направлениям", start3:"Ежемесячные отчеты", start4:"Email-поддержка", pro1:"Полная поддержка", pro2:"Консультации по 4 направлениям", pro3:"Еженедельные отчеты", pro4:"Персональный менеджер", pro5:"Приоритетная поддержка", prem1:"Комплексная поддержка", prem2:"Консультации по всем направлениям", prem3:"Круглосуточная поддержка", prem4:"Стратегические сессии", prem5:"BI-аналитика", contact_btn:"Связаться", footer_main:"© 2026 PAYKOR. Комплексный консалтинг для бизнеса." },
+    tj: { nav_services:"Хизматрасонӣ", nav_market:"Таҳлили бозор", nav_pricing:"Нархҳо", nav_why:"Чаро мо", nav_contacts:"Тамос", pricing_title:"Сиёсати нархгузорӣ", pricing_subtitle:"Шартҳои инфиродӣ барои ҳар як мизоҷ", pack_start:"Бастаи оғозӣ", pack_pro:"Бастаи касбӣ", pack_premium:"Бастаи премиум", price_on_request:"бо дархост", start1:"Дастгирии асосӣ", start2:"Машваратҳо аз рӯи 2 самт", start3:"Ҳисоботи моҳона", start4:"Дастгирии Email", pro1:"Дастгирии пурра", pro2:"Машваратҳо аз рӯи 4 самт", pro3:"Ҳисоботи ҳафтаина", pro4:"Менеҷери шахсӣ", pro5:"Дастгирии аввалиндараҷа", prem1:"Дастгирии ҳамаҷониба", prem2:"Машваратҳо аз рӯи ҳамаи самтҳо", prem3:"Дастгирии 24/7", prem4:"Ҷаласаҳои стратегӣ", prem5:"BI-аналитика", contact_btn:"Тамос гиред", footer_main:"© 2026 PAYKOR. Машварати ҳамаҷониба барои тиҷорат." },
+    en: { nav_services:"Services", nav_market:"Market Analysis", nav_pricing:"Pricing", nav_why:"Why Us", nav_contacts:"Contacts", pricing_title:"Pricing Policy", pricing_subtitle:"Individual terms for each client", pack_start:"Starter Pack", pack_pro:"Professional Pack", pack_premium:"Premium Pack", price_on_request:"on request", start1:"Basic support", start2:"Consultations on 2 areas", start3:"Monthly reports", start4:"Email support", pro1:"Full support", pro2:"Consultations on 4 areas", pro3:"Weekly reports", pro4:"Personal manager", pro5:"Priority support", prem1:"Comprehensive support", prem2:"Consultations on all areas", prem3:"24/7 support", prem4:"Strategic sessions", prem5:"BI analytics", contact_btn:"Contact Us", footer_main:"© 2026 PAYKOR. Comprehensive business consulting." }
+};
+let currentLang = localStorage.getItem('paykor_lang') || 'ru';
+function applyLanguage(lang) { document.querySelectorAll('[data-key]').forEach(el => { const key = el.getAttribute('data-key'); if(translations[lang] && translations[lang][key]) el.innerText = translations[lang][key]; }); document.querySelectorAll('.lang-btn').forEach(btn => { if(btn.getAttribute('data-lang') === lang) btn.classList.add('active'); else btn.classList.remove('active'); }); localStorage.setItem('paykor_lang', lang); currentLang = lang; }
+document.querySelectorAll('.lang-btn').forEach(btn => { btn.addEventListener('click', () => { applyLanguage(btn.getAttribute('data-lang')); }); });
+document.getElementById('logoLink').addEventListener('click', function(e) { e.preventDefault(); window.location.href = 'index.html?lang=' + currentLang; });
+const urlParams = new URLSearchParams(window.location.search); const urlLang = urlParams.get('lang'); if(urlLang && (urlLang === 'ru' || urlLang === 'tj' || urlLang === 'en')) { localStorage.setItem('paykor_lang', urlLang); applyLanguage(urlLang); } else { applyLanguage(currentLang); }
+</script>
+</body>
+</html>
