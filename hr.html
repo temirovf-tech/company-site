@@ -4,88 +4,386 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR-услуги | PAYKOR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary:#162E53; --secondary:#46505F; --accent:#BC6A49; --ink:#1B2230; --light-bg:#F2F3F5; --white:#FFFFFF; --border:rgba(70,80,95,0.15); --shadow:0 8px 24px rgba(0,0,0,0.04); --transition:all 0.25s cubic-bezier(0.2,0.9,0.4,1.1); }
+        :root {
+            --primary: #162E53;
+            --secondary: #46505F;
+            --accent: #BC6A49;
+            --ink: #1B2230;
+            --light-bg: #F5F6F8;
+            --white: #FFFFFF;
+            --border: rgba(70,80,95,0.08);
+            --shadow: 0 4px 24px rgba(0,0,0,0.04);
+            --shadow-hover: 0 16px 48px rgba(0,0,0,0.10);
+            --transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+            --radius: 16px;
+            --radius-lg: 28px;
+        }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Montserrat',sans-serif; background:var(--light-bg); color:var(--ink); line-height:1.6; }
-        h1,h2,h3,h4 { font-weight:700; line-height:1.2; letter-spacing:-0.02em; color:var(--primary); }
-        h1 { font-size:3.2rem; margin-bottom:1.5rem; }
-        h2 { font-size:2.4rem; margin:3rem 0 2rem; }
-        h3 { font-size:1.6rem; margin:2rem 0 1rem; }
-        h4 { font-size:1.2rem; margin:1.5rem 0 0.8rem; color:var(--accent); }
-        p { margin-bottom:1rem; color:var(--secondary); }
+        html { scroll-behavior:smooth; }
+        body { font-family:'Montserrat',sans-serif; background:var(--white); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
+        h1 { font-size:clamp(2.8rem,7vw,5rem); font-weight:900; letter-spacing:-0.03em; color:var(--primary); margin-bottom:1rem; }
+        h2 { font-size:clamp(2rem,4vw,3rem); font-weight:800; letter-spacing:-0.02em; color:var(--primary); margin:2.5rem 0 1.5rem; }
+        h3 { font-size:1.3rem; font-weight:700; color:var(--primary); margin:1.5rem 0 0.8rem; }
+        h4 { font-size:1.1rem; font-weight:700; color:var(--accent); margin-bottom:0.5rem; }
+        p { color:var(--secondary); font-size:1rem; line-height:1.7; margin-bottom:1rem; }
         .container { max-width:1200px; margin:0 auto; padding:0 2rem; }
-        .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.9rem 2.2rem; font-weight:600; text-decoration:none; transition:var(--transition); border:1.5px solid transparent; border-radius:40px; }
-        .btn-primary { background:var(--primary); color:var(--white); }
-        .btn-primary:hover { background:transparent; border-color:var(--primary); color:var(--primary); transform:translateY(-2px); }
-        .btn-outline { background:transparent; border-color:var(--primary); color:var(--primary); }
-        .btn-outline:hover { background:var(--primary); color:var(--white); transform:translateY(-2px); }
-        .btn-accent { background:var(--accent); color:var(--white); }
-        .btn-accent:hover { background:transparent; border-color:var(--accent); color:var(--accent); }
-        .header { background:var(--white); box-shadow:0 1px 0 var(--border); padding:1.2rem 0; position:sticky; top:0; z-index:100; }
-        .header-container { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; padding:0 2rem; flex-wrap:wrap; gap:1rem; }
-        .logo { display:flex; align-items:center; gap:0.6rem; text-decoration:none; cursor:pointer; }
-        .logo-icon svg { width:38px; height:38px; }
-        .logo-text { font-size:1.6rem; font-weight:800; color:var(--primary); }
-        .nav-links { display:flex; gap:2rem; align-items:center; flex-wrap:wrap; }
-        .nav-links a { text-decoration:none; color:var(--secondary); font-weight:600; font-size:0.95rem; }
-        .nav-links a:hover { color:var(--primary); }
-        .lang-switcher { display:flex; gap:0.5rem; margin-left:1rem; }
-        .lang-btn { background:none; border:none; font-weight:600; cursor:pointer; padding:0.3rem 0.6rem; border-radius:4px; color:var(--secondary); }
-        .lang-btn.active { background:var(--accent); color:white; }
-        .hero { padding:5rem 0 3rem; text-align:center; }
+
+        .btn {
+            display:inline-flex; align-items:center; gap:0.6rem;
+            padding:0.9rem 2.4rem;
+            font-weight:700; font-size:0.9rem; text-transform:uppercase;
+            letter-spacing:0.05em;
+            text-decoration:none; border:2px solid transparent;
+            border-radius:60px; transition:var(--transition);
+            cursor:pointer; font-family:'Montserrat',sans-serif;
+            position:relative; overflow:hidden;
+        }
+        .btn .btn__hover { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.1); transform:translateX(-100%); transition:var(--transition); }
+        .btn:hover .btn__hover { transform:translateX(0); }
+        .btn-primary { background:var(--primary); color:var(--white); border-color:var(--primary); }
+        .btn-primary:hover { background:transparent; color:var(--primary); transform:translateY(-3px); box-shadow:var(--shadow-hover); }
+        .btn-outline { background:transparent; color:var(--primary); border-color:var(--primary); }
+        .btn-outline:hover { background:var(--primary); color:var(--white); transform:translateY(-3px); }
+        .btn-accent { background:var(--accent); color:var(--white); border-color:var(--accent); }
+        .btn-accent:hover { background:transparent; color:var(--accent); transform:translateY(-3px); }
+        .btn-nav { padding:0.5rem 1.6rem; font-size:0.75rem; }
+
+        .header {
+            position:fixed; top:0; left:0; width:100%; z-index:1000; padding:1.2rem 0;
+            background:rgba(255,255,255,0.92); backdrop-filter:blur(16px);
+            border-bottom:1px solid var(--border); transition:var(--transition);
+        }
+        .header.scrolled { background:rgba(255,255,255,0.98); box-shadow:0 2px 40px rgba(0,0,0,0.04); }
+        .header__inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+        .header__logo { display:flex; align-items:center; gap:0.6rem; text-decoration:none; font-weight:900; font-size:1.5rem; color:var(--primary); cursor:pointer; }
+        .header__logo svg { width:38px; height:38px; }
+        .header__nav { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+        .header__nav a { text-decoration:none; color:var(--secondary); font-weight:600; font-size:0.9rem; text-transform:lowercase; transition:var(--transition); position:relative; }
+        .header__nav a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--accent); transition:var(--transition); }
+        .header__nav a:hover { color:var(--primary); }
+        .header__nav a:hover::after { width:100%; }
+        .header__actions { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+        .lang-switcher { display:flex; gap:0.2rem; background:var(--light-bg); padding:0.2rem; border-radius:30px; }
+        .lang-btn { background:none; border:none; font-weight:700; font-size:0.7rem; cursor:pointer; padding:0.3rem 0.7rem; border-radius:20px; transition:var(--transition); color:var(--secondary); font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.03em; }
+        .lang-btn.active { background:var(--primary); color:var(--white); }
+        .lang-btn:hover:not(.active) { background:var(--border); }
+
+        .hero { padding:10rem 0 3rem; background:var(--white); position:relative; text-align:center; }
+        .hero__subtitle { max-width:600px; margin:0.5rem auto 0; font-size:1.2rem; color:var(--secondary); }
+        .hero__actions { display:flex; gap:1rem; justify-content:center; margin-top:2rem; flex-wrap:wrap; }
+
         section { padding:4rem 0; }
         .bg-white { background:var(--white); }
-        .service-detail { background:var(--white); padding:3rem; border-radius:24px; box-shadow:var(--shadow); margin-bottom:3rem; }
-        .service-icon { margin:0 auto 2rem; width:100px; height:100px; display:flex; align-items:center; justify-content:center; background:rgba(188,106,73,0.1); border-radius:50%; }
-        .service-icon svg { width:50px; height:50px; stroke:var(--accent); stroke-width:1.5; fill:none; }
-        .service-features { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-top:2rem; }
-        .feature-item { padding:1.5rem; background:var(--light-bg); border-radius:16px; }
-        .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-top:2rem; }
-        .pricing-card { background:var(--white); padding:2.5rem 2rem; border-radius:24px; box-shadow:var(--shadow); border:1px solid var(--border); text-align:center; transition:var(--transition); }
-        .pricing-card:hover { transform:translateY(-8px); border-color:var(--accent); }
+        .bg-light { background:var(--light-bg); }
+
+        .service-detail { background:var(--white); padding:3rem; border-radius:var(--radius-lg); border:1px solid var(--border); margin-bottom:2rem; }
+        .service-icon { margin:0 auto 2rem; width:100px; height:100px; background:rgba(188,106,73,0.08); border-radius:50%; display:flex; align-items:center; justify-content:center; }
+        .service-icon svg { width:50px; height:50px; stroke:var(--accent); stroke-width:1.8; fill:none; }
+        .service-features { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; margin-top:2rem; }
+        .feature-item { padding:1.5rem; background:var(--light-bg); border-radius:var(--radius); }
+
+        .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; margin-top:2rem; }
+        .pricing-card { background:var(--white); padding:2.5rem 2rem; border-radius:var(--radius); border:1px solid var(--border); text-align:center; transition:var(--transition); }
+        .pricing-card:hover { transform:translateY(-6px); border-color:var(--accent); box-shadow:var(--shadow-hover); }
         .price { font-size:1.8rem; font-weight:700; color:var(--accent); margin:0 0 1.5rem; }
         .pricing-features { list-style:none; margin:1.5rem 0; text-align:left; }
         .pricing-features li { padding:0.5rem 0 0.5rem 1.8rem; position:relative; color:var(--secondary); border-bottom:1px solid var(--border); }
         .pricing-features li::before { content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:700; }
-        .contact-block { background:var(--primary); border-radius:32px; padding:4rem 2rem; text-align:center; color:var(--white); }
-        .contact-block h2 { color:var(--white); margin-bottom:1.5rem; }
-        .contact-buttons { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; margin:1.5rem 0; }
-        footer { background:var(--ink); color:rgba(255,255,255,0.7); padding:3rem 0; text-align:center; font-size:0.9rem; }
-        @media (max-width:900px){ h1{font-size:2.6rem;} h2{font-size:2rem;} .header-container{flex-direction:column;} .container{padding:0 1.5rem;} }
-        @media (max-width:600px){ .service-features, .pricing-grid { grid-template-columns:1fr; } }
+        .pricing-features li:last-child { border-bottom:none; }
+
+        .contact-block { background:var(--primary); border-radius:var(--radius-lg); padding:4rem 3rem; text-align:center; color:var(--white); position:relative; overflow:hidden; }
+        .contact-block::before { content:''; position:absolute; top:-50%; right:-20%; width:50%; height:200%; background:radial-gradient(ellipse, rgba(188,106,73,0.08) 0%, transparent 70%); pointer-events:none; }
+        .contact-block h2 { color:var(--white); position:relative; }
+        .contact-block p { color:rgba(255,255,255,0.85); max-width:600px; margin:0 auto 2rem; font-size:1.1rem; position:relative; }
+        .contact-buttons { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; position:relative; }
+        .contact-info { margin-top:2rem; display:flex; justify-content:center; gap:3rem; flex-wrap:wrap; color:rgba(255,255,255,0.8); font-size:0.95rem; position:relative; }
+
+        footer { background:var(--ink); color:rgba(255,255,255,0.7); padding:4rem 0 2rem; }
+        .footer__inner { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2.5rem; margin-bottom:2.5rem; }
+        .footer__brand .logo { color:var(--white); margin-bottom:1rem; display:flex; align-items:center; gap:0.6rem; font-weight:900; font-size:1.4rem; }
+        .footer__brand p { color:rgba(255,255,255,0.5); font-size:0.9rem; max-width:300px; }
+        .footer__col h4 { color:var(--white); font-size:1rem; margin-bottom:1rem; }
+        .footer__col ul { list-style:none; }
+        .footer__col ul li { margin-bottom:0.5rem; }
+        .footer__col ul a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.9rem; transition:var(--transition); }
+        .footer__col ul a:hover { color:var(--white); }
+        .footer__bottom { border-top:1px solid rgba(255,255,255,0.06); padding-top:2rem; text-align:center; font-size:0.85rem; color:rgba(255,255,255,0.4); display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+
+        .fade-up { opacity:0; transform:translateY(30px); transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .fade-up.visible { opacity:1; transform:translateY(0); }
+
+        @media (max-width:992px) { .footer__inner { grid-template-columns:1fr 1fr; } }
+        @media (max-width:768px) {
+            .header__inner { flex-direction:column; gap:0.8rem; }
+            .header__nav { justify-content:center; gap:1rem; }
+            .header__actions { justify-content:center; }
+            .hero { padding:9rem 0 2rem; }
+            .service-features, .pricing-grid { grid-template-columns:1fr; }
+            .service-detail { padding:1.5rem; }
+            .contact-block { padding:2rem 1.5rem; }
+            .contact-info { flex-direction:column; gap:0.8rem; }
+            .footer__inner { grid-template-columns:1fr; text-align:center; }
+            .footer__brand p { margin:0 auto; }
+            .footer__bottom { flex-direction:column; align-items:center; }
+        }
     </style>
 </head>
 <body>
-<header class="header">
-    <div class="header-container">
-        <span class="logo" id="logoLink" style="cursor:pointer;"><span class="logo-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M28 14L14 34H24L20 44L38 20H28L28 14Z" fill="#162E53"/><path d="M32 10L16 34H24L20 44L38 18H32V10Z" fill="#46505F"/><circle cx="32" cy="12" r="1.5" fill="#BC6A49"/></svg></span><span class="logo-text">PAYKOR</span></span>
-        <div class="nav-links">
-            <a href="services.html" data-key="nav_services">Услуги</a>
-            <a href="market-analysis.html" data-key="nav_market">Анализ рынка</a>
-            <a href="pricing.html" data-key="nav_pricing">Цены</a>
-            <a href="index.html#about" data-key="nav_why">Почему мы</a>
-            <a href="index.html#contact" data-key="nav_contacts">Контакты</a>
-            <div class="lang-switcher"><button class="lang-btn" data-lang="ru">RU</button><button class="lang-btn" data-lang="tj">TJ</button><button class="lang-btn" data-lang="en">EN</button></div>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+    <div class="container">
+        <div class="header__inner">
+            <span class="header__logo" id="logoLink">
+                <svg viewBox="0 0 48 48" fill="none"><path d="M28 14L14 34H24L20 44L38 20H28L28 14Z" fill="#162E53" stroke="#162E53" stroke-width="1.5"/><path d="M32 10L16 34H24L20 44L38 18H32V10Z" fill="#46505F" stroke="#46505F" stroke-width="1.5"/><circle cx="32" cy="12" r="1.5" fill="#BC6A49"/></svg>
+                PAYKOR
+            </span>
+            <nav class="header__nav">
+                <a href="services.html" data-key="nav_services">услуги</a>
+                <a href="index.html#cases" data-key="nav_cases">кейсы</a>
+                <a href="index.html#about" data-key="nav_about">о нас</a>
+                <a href="index.html#contact" data-key="nav_contacts">контакты</a>
+            </nav>
+            <div class="header__actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <a href="index.html#contact" class="btn btn-primary btn-nav" data-key="nav_contact_btn">обсудить проект</a>
+            </div>
         </div>
     </div>
 </header>
-<section class="hero"><div class="container"><h1 data-key="hero_title">HR-услуги</h1><p data-key="hero_desc">Кадровый аутсорсинг, рекрутинг, оценка персонала, HR-брендинг.</p><div class="hero-buttons"><a href="services.html" class="btn btn-outline" data-key="all_services">Все услуги</a><a href="#details" class="btn btn-primary" data-key="more_link">Подробнее</a></div></div></section>
-<section id="details" class="bg-white"><div class="container"><div class="service-detail"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L3 7v6c0 5 9 7 9 7s9-2 9-7V7l-9-5z"/><path d="M12 12l2 2 4-4"/></svg></div><h2 data-key="service_title">HR-услуги</h2><p data-key="service_desc">Правильное управление человеческими ресурсами становится критическим фактором успеха бизнеса. Наши HR-услуги помогут вам привлечь, развить и удержать лучших специалистов.</p><h3 data-key="what_included">Что входит в услугу:</h3><div class="service-features"><div class="feature-item"><h4 data-key="feature1_title">Кадровое делопроизводство</h4><p data-key="feature1_desc">Ведение кадрового делопроизводства, подготовка приказов, ведение личных дел сотрудников, оформление приёма и увольнения.</p></div><div class="feature-item"><h4 data-key="feature2_title">Массовый и точечный рекрутинг</h4><p data-key="feature2_desc">Поиск и подбор кандидатов на массовые и ключевые позиции. Разработка вакансий, скрининг, собеседования.</p></div><div class="feature-item"><h4 data-key="feature3_title">Разработка онбординга и тренингов</h4><p data-key="feature3_desc">Создание программ адаптации новых сотрудников, разработка корпоративных тренингов, оценка эффективности обучения.</p></div></div></div><h2 data-key="pricing_title">Цены</h2><div class="pricing-grid"><div class="pricing-card"><h3 data-key="pack_start">Стартовый пакет</h3><div class="price" data-key="price_on_request">по запросу</div><ul class="pricing-features"><li data-key="start1">Консультации 2 раза в месяц</li><li data-key="start2">Базовый рекрутинг (до 2 вакансий)</li><li data-key="start3">Шаблонные документы</li><li data-key="start4">Email-поддержка</li></ul></div><div class="pricing-card"><h3 data-key="pack_pro">Профессиональный пакет</h3><div class="price" data-key="price_on_request">по запросу</div><ul class="pricing-features"><li data-key="pro1">Еженедельные консультации</li><li data-key="pro2">Полный рекрутинг (до 5 вакансий)</li><li data-key="pro3">Индивидуальные документы</li><li data-key="pro4">Приоритетная поддержка</li><li data-key="pro5">Разработка тренингов</li></ul></div><div class="pricing-card"><h3 data-key="pack_premium">Премиум пакет</h3><div class="price" data-key="price_on_request">по запросу</div><ul class="pricing-features"><li data-key="prem1">Ежедневные консультации</li><li data-key="prem2">Неограниченный рекрутинг</li><li data-key="prem3">Индивидуальные программы</li><li data-key="prem4">Круглосуточная поддержка</li><li data-key="prem5">Разработка онбординга</li><li data-key="prem6">Оценка эффективности</li></ul></div></div></div></section>
-<section><div class="container"><div class="contact-block"><h2 data-key="contact_title">Готовы обсудить ваш проект?</h2><p data-key="contact_desc">Свяжитесь с нами — мы предложим решение, которое укрепит ваш бизнес.</p><div class="contact-buttons"><a href="mailto:info@paykor.tj" class="btn btn-accent">📧 info@paykor.tj</a><a href="tel:+992000000000" class="btn btn-accent">📞 +992 00 000 0000</a></div><p style="margin-top:1.5rem; font-size:0.9rem;" data-key="address">📍 Худжанд, Таджикистан</p></div></div></section>
-<footer><div class="container"><p data-key="footer_main">© 2026 PAYKOR. Комплексный консалтинг для бизнеса.</p><p style="margin-top:0.5rem;" data-key="footer_services">HR · Финансы · ИТ · Маркетинг · Юридические услуги · Аналитика · Логистика</p></div></footer>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="container">
+        <h1 data-key="hero_title">HR-услуги</h1>
+        <p class="hero__subtitle" data-key="hero_desc">Кадровый аутсорсинг, рекрутинг, оценка персонала, HR-брендинг.</p>
+        <div class="hero__actions">
+            <a href="services.html" class="btn btn-outline" data-key="all_services">Все услуги</a>
+            <a href="#details" class="btn btn-primary" data-key="more_link">Подробнее</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== DETAILS ===== -->
+<section id="details" class="bg-white">
+    <div class="container">
+        <div class="service-detail">
+            <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L3 7v6c0 5 9 7 9 7s9-2 9-7V7l-9-5z"/><path d="M12 12l2 2 4-4"/></svg></div>
+            <h2 data-key="service_title">HR-услуги</h2>
+            <p data-key="service_desc">Правильное управление человеческими ресурсами становится критическим фактором успеха бизнеса. Наши HR-услуги помогут вам привлечь, развить и удержать лучших специалистов.</p>
+            <h3 data-key="what_included">Что входит в услугу:</h3>
+            <div class="service-features">
+                <div class="feature-item fade-up"><h4 data-key="feature1_title">Кадровое делопроизводство</h4><p data-key="feature1_desc">Ведение кадрового делопроизводства, подготовка приказов, ведение личных дел сотрудников, оформление приёма и увольнения.</p></div>
+                <div class="feature-item fade-up"><h4 data-key="feature2_title">Массовый и точечный рекрутинг</h4><p data-key="feature2_desc">Поиск и подбор кандидатов на массовые и ключевые позиции. Разработка вакансий, скрининг, собеседования.</p></div>
+                <div class="feature-item fade-up"><h4 data-key="feature3_title">Разработка онбординга и тренингов</h4><p data-key="feature3_desc">Создание программ адаптации новых сотрудников, разработка корпоративных тренингов, оценка эффективности обучения.</p></div>
+            </div>
+        </div>
+
+        <h2 data-key="pricing_title">Цены</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card fade-up">
+                <h3 data-key="pack_start">Стартовый пакет</h3>
+                <div class="price" data-key="price_on_request">по запросу</div>
+                <ul class="pricing-features">
+                    <li data-key="start1">Консультации 2 раза в месяц</li>
+                    <li data-key="start2">Базовый рекрутинг (до 2 вакансий)</li>
+                    <li data-key="start3">Шаблонные документы</li>
+                    <li data-key="start4">Email-поддержка</li>
+                </ul>
+            </div>
+            <div class="pricing-card fade-up">
+                <h3 data-key="pack_pro">Профессиональный пакет</h3>
+                <div class="price" data-key="price_on_request">по запросу</div>
+                <ul class="pricing-features">
+                    <li data-key="pro1">Еженедельные консультации</li>
+                    <li data-key="pro2">Полный рекрутинг (до 5 вакансий)</li>
+                    <li data-key="pro3">Индивидуальные документы</li>
+                    <li data-key="pro4">Приоритетная поддержка</li>
+                    <li data-key="pro5">Разработка тренингов</li>
+                </ul>
+            </div>
+            <div class="pricing-card fade-up">
+                <h3 data-key="pack_premium">Премиум пакет</h3>
+                <div class="price" data-key="price_on_request">по запросу</div>
+                <ul class="pricing-features">
+                    <li data-key="prem1">Ежедневные консультации</li>
+                    <li data-key="prem2">Неограниченный рекрутинг</li>
+                    <li data-key="prem3">Индивидуальные программы</li>
+                    <li data-key="prem4">Круглосуточная поддержка</li>
+                    <li data-key="prem5">Разработка онбординга</li>
+                    <li data-key="prem6">Оценка эффективности</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section>
+    <div class="container">
+        <div class="contact-block">
+            <h2 data-key="contact_title">Готовы обсудить ваш проект?</h2>
+            <p data-key="contact_desc">Свяжитесь с нами — мы предложим решение, которое укрепит ваш бизнес.</p>
+            <div class="contact-buttons">
+                <a href="mailto:info@paykor.tj" class="btn btn-accent">📧 info@paykor.tj</a>
+                <a href="tel:+992000000000" class="btn btn-accent">📞 +992 00 000 0000</a>
+            </div>
+            <div class="contact-info">
+                <span data-key="address">📍 Худжанд, Таджикистан</span>
+                <span>🕐 <span data-key="work_hours">Пн-Пт: 9:00 – 18:00</span></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <div class="footer__inner">
+            <div class="footer__brand">
+                <div class="logo"><svg viewBox="0 0 48 48" fill="none" width="36" height="36"><path d="M28 14L14 34H24L20 44L38 20H28L28 14Z" fill="#BC6A49" stroke="#BC6A49" stroke-width="1.5"/><path d="M32 10L16 34H24L20 44L38 18H32V10Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5"/><circle cx="32" cy="12" r="1.5" fill="#BC6A49"/></svg>PAYKOR</div>
+                <p data-key="footer_desc">Комплексный консалтинг для бизнеса. Помогаем компаниям расти и развиваться.</p>
+            </div>
+            <div class="footer__col">
+                <h4 data-key="footer_nav">Навигация</h4>
+                <ul>
+                    <li><a href="services.html" data-key="nav_services">Услуги</a></li>
+                    <li><a href="index.html#cases" data-key="nav_cases">Кейсы</a></li>
+                    <li><a href="index.html#about" data-key="nav_about">О нас</a></li>
+                    <li><a href="index.html#contact" data-key="nav_contacts">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4 data-key="footer_services_title">Услуги</h4>
+                <ul>
+                    <li><a href="hr.html" data-key="service_hr_title">HR-услуги</a></li>
+                    <li><a href="finance.html" data-key="service_finance_title">Финансы</a></li>
+                    <li><a href="it.html" data-key="service_it_title">ИТ-услуги</a></li>
+                    <li><a href="marketing.html" data-key="service_marketing_title">Маркетинг</a></li>
+                    <li><a href="legal.html" data-key="service_legal_title">Юридические услуги</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4 data-key="footer_contacts">Контакты</h4>
+                <ul>
+                    <li><a href="mailto:info@paykor.tj">info@paykor.tj</a></li>
+                    <li><a href="tel:+992000000000">+992 00 000 0000</a></li>
+                    <li><span data-key="address_short">Худжанд, Таджикистан</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <span>© 2026 PAYKOR. <span data-key="footer_copyright">Все права защищены.</span></span>
+            <span data-key="footer_services_line">HR · Финансы · ИТ · Маркетинг · Юридические услуги · Аналитика · Логистика</span>
+        </div>
+    </div>
+</footer>
+
 <script>
-const translations = {
-    ru: { nav_services:"Услуги", nav_market:"Анализ рынка", nav_pricing:"Цены", nav_why:"Почему мы", nav_contacts:"Контакты", hero_title:"HR-услуги", hero_desc:"Кадровый аутсорсинг, рекрутинг, оценка персонала, HR-брендинг.", all_services:"Все услуги", more_link:"Подробнее", service_title:"HR-услуги", service_desc:"Правильное управление человеческими ресурсами становится критическим фактором успеха бизнеса.", what_included:"Что входит в услугу:", feature1_title:"Кадровое делопроизводство", feature1_desc:"Ведение кадрового делопроизводства, подготовка приказов, ведение личных дел сотрудников.", feature2_title:"Массовый и точечный рекрутинг", feature2_desc:"Поиск и подбор кандидатов на массовые и ключевые позиции.", feature3_title:"Разработка онбординга и тренингов", feature3_desc:"Создание программ адаптации новых сотрудников, разработка корпоративных тренингов.", pricing_title:"Цены", pack_start:"Стартовый пакет", pack_pro:"Профессиональный пакет", pack_premium:"Премиум пакет", price_on_request:"по запросу", start1:"Консультации 2 раза в месяц", start2:"Базовый рекрутинг (до 2 вакансий)", start3:"Шаблонные документы", start4:"Email-поддержка", pro1:"Еженедельные консультации", pro2:"Полный рекрутинг (до 5 вакансий)", pro3:"Индивидуальные документы", pro4:"Приоритетная поддержка", pro5:"Разработка тренингов", prem1:"Ежедневные консультации", prem2:"Неограниченный рекрутинг", prem3:"Индивидуальные программы", prem4:"Круглосуточная поддержка", prem5:"Разработка онбординга", prem6:"Оценка эффективности", contact_title:"Готовы обсудить ваш проект?", contact_desc:"Свяжитесь с нами — мы предложим решение, которое укрепит ваш бизнес.", address:"📍 Худжанд, Таджикистан", footer_main:"© 2026 PAYKOR. Комплексный консалтинг для бизнеса.", footer_services:"HR · Финансы · ИТ · Маркетинг · Юридические услуги · Аналитика · Логистика" },
-    tj: { nav_services:"Хизматрасонӣ", nav_market:"Таҳлили бозор", nav_pricing:"Нархҳо", nav_why:"Чаро мо", nav_contacts:"Тамос", hero_title:"Хизматрасонии HR", hero_desc:"Аутсорсинги кадрӣ, рекрутинг, арзёбии кормандон, HR-брендинг.", all_services:"Ҳамаи хизматрасониҳо", more_link:"Маълумоти бештар", service_title:"Хизматрасонии HR", service_desc:"Идоракунии самараноки захираҳои инсонӣ омили муҳими муваффақияти тиҷорат мебошад.", what_included:"Дар хизматрасонӣ чӣ дохил аст:", feature1_title:"Коргузории кадрӣ", feature1_desc:"Пешбурди коргузории кадрӣ, тайёр кардани фармонҳо, пешбурди парвандаҳои шахсии кормандон.", feature2_title:"Рекрутинги оммавӣ ва нуқтавӣ", feature2_desc:"Ҷустуҷӯ ва интихоби номзадҳо ба вазифаҳои оммавӣ ва калидӣ.", feature3_title:"Таҳияи онбординг ва тренинҷҳо", feature3_desc:"Эҷоди барномаҳои мутобиқсозии кормандон, таҳияи тренинҷҳои корпоративӣ.", pricing_title:"Нархҳо", pack_start:"Бастаи оғозӣ", pack_pro:"Бастаи касбӣ", pack_premium:"Бастаи премиум", price_on_request:"бо дархост", start1:"Машваратҳо 2 маротиба дар моҳ", start2:"Рекрутинги асосӣ (то 2 вакансия)", start3:"Ҳуҷҷатҳои шаблонӣ", start4:"Дастгирии Email", pro1:"Машваратҳои ҳафтаина", pro2:"Рекрутинги пурра (то 5 вакансия)", pro3:"Ҳуҷҷатҳои инфиродӣ", pro4:"Дастгирии аввалиндараҷа", pro5:"Таҳияи тренинҷҳо", prem1:"Машваратҳои ҳаррӯза", prem2:"Рекрутинги бемаҳдуд", prem3:"Барномаҳои инфиродӣ", prem4:"Дастгирии 24/7", prem5:"Таҳияи онбординг", prem6:"Арзёбии самаранокӣ", contact_title:"Омодаед лоиҳаи худро муҳокима кунед?", contact_desc:"Бо мо тамос гиред — мо ҳалли устувори тиҷорати шуморо пешниҳод мекунем.", address:"📍 Хуҷанд, Тоҷикистон", footer_main:"© 2026 PAYKOR. Машварати ҳамаҷониба барои тиҷорат.", footer_services:"HR · Молия · ИТ · Маркетинг · Хизматрасонии ҳуқуқӣ · Аналитика · Логистика" },
-    en: { nav_services:"Services", nav_market:"Market Analysis", nav_pricing:"Pricing", nav_why:"Why Us", nav_contacts:"Contacts", hero_title:"HR Services", hero_desc:"HR outsourcing, recruiting, personnel assessment, HR branding.", all_services:"All Services", more_link:"Learn More", service_title:"HR Services", service_desc:"Proper human resource management is a critical success factor for business.", what_included:"What is included:", feature1_title:"HR Records Management", feature1_desc:"Maintaining HR records, preparing orders, maintaining employee personal files.", feature2_title:"Mass and Targeted Recruiting", feature2_desc:"Search and selection of candidates for mass and key positions.", feature3_title:"Onboarding and Training Development", feature3_desc:"Creating adaptation programs for new employees, developing corporate training.", pricing_title:"Pricing", pack_start:"Starter Pack", pack_pro:"Professional Pack", pack_premium:"Premium Pack", price_on_request:"on request", start1:"Consultations 2 times a month", start2:"Basic recruiting (up to 2 vacancies)", start3:"Template documents", start4:"Email support", pro1:"Weekly consultations", pro2:"Full recruiting (up to 5 vacancies)", pro3:"Individual documents", pro4:"Priority support", pro5:"Training development", prem1:"Daily consultations", prem2:"Unlimited recruiting", prem3:"Individual programs", prem4:"24/7 support", prem5:"Onboarding development", prem6:"Performance evaluation", contact_title:"Ready to discuss your project?", contact_desc:"Contact us — we will offer a solution that strengthens your business.", address:"📍 Khujand, Tajikistan", footer_main:"© 2026 PAYKOR. Comprehensive business consulting.", footer_services:"HR · Finance · IT · Marketing · Legal Services · Analytics · Logistics" }
-};
-let currentLang = localStorage.getItem('paykor_lang') || 'ru';
-function applyLanguage(lang) { document.querySelectorAll('[data-key]').forEach(el => { const key = el.getAttribute('data-key'); if(translations[lang] && translations[lang][key]) el.innerText = translations[lang][key]; }); document.querySelectorAll('.lang-btn').forEach(btn => { if(btn.getAttribute('data-lang') === lang) btn.classList.add('active'); else btn.classList.remove('active'); }); localStorage.setItem('paykor_lang', lang); currentLang = lang; }
-document.querySelectorAll('.lang-btn').forEach(btn => { btn.addEventListener('click', () => { applyLanguage(btn.getAttribute('data-lang')); }); });
-document.getElementById('logoLink').addEventListener('click', function(e) { e.preventDefault(); window.location.href = 'index.html?lang=' + currentLang; });
-const urlParams = new URLSearchParams(window.location.search); const urlLang = urlParams.get('lang'); if(urlLang && (urlLang === 'ru' || urlLang === 'tj' || urlLang === 'en')) { localStorage.setItem('paykor_lang', urlLang); applyLanguage(urlLang); } else { applyLanguage(currentLang); }
+    const translations = {
+        ru: {
+            nav_services: "услуги", nav_cases: "кейсы", nav_about: "о нас", nav_contacts: "контакты", nav_contact_btn: "обсудить проект",
+            hero_title: "HR-услуги", hero_desc: "Кадровый аутсорсинг, рекрутинг, оценка персонала, HR-брендинг.",
+            all_services: "Все услуги", more_link: "Подробнее",
+            service_title: "HR-услуги", service_desc: "Правильное управление человеческими ресурсами становится критическим фактором успеха бизнеса. Наши HR-услуги помогут вам привлечь, развить и удержать лучших специалистов.",
+            what_included: "Что входит в услугу:",
+            feature1_title: "Кадровое делопроизводство", feature1_desc: "Ведение кадрового делопроизводства, подготовка приказов, ведение личных дел сотрудников.",
+            feature2_title: "Массовый и точечный рекрутинг", feature2_desc: "Поиск и подбор кандидатов на массовые и ключевые позиции.",
+            feature3_title: "Разработка онбординга и тренингов", feature3_desc: "Создание программ адаптации новых сотрудников, разработка корпоративных тренингов.",
+            pricing_title: "Цены", pack_start: "Стартовый пакет", pack_pro: "Профессиональный пакет", pack_premium: "Премиум пакет", price_on_request: "по запросу",
+            start1: "Консультации 2 раза в месяц", start2: "Базовый рекрутинг (до 2 вакансий)", start3: "Шаблонные документы", start4: "Email-поддержка",
+            pro1: "Еженедельные консультации", pro2: "Полный рекрутинг (до 5 вакансий)", pro3: "Индивидуальные документы", pro4: "Приоритетная поддержка", pro5: "Разработка тренингов",
+            prem1: "Ежедневные консультации", prem2: "Неограниченный рекрутинг", prem3: "Индивидуальные программы", prem4: "Круглосуточная поддержка", prem5: "Разработка онбординга", prem6: "Оценка эффективности",
+            contact_title: "Готовы обсудить ваш проект?", contact_desc: "Свяжитесь с нами — мы предложим решение, которое укрепит ваш бизнес.",
+            address: "📍 Худжанд, Таджикистан", work_hours: "Пн-Пт: 9:00 – 18:00",
+            footer_desc: "Комплексный консалтинг для бизнеса. Помогаем компаниям расти и развиваться.",
+            footer_nav: "Навигация", footer_services_title: "Услуги", footer_contacts: "Контакты",
+            address_short: "Худжанд, Таджикистан", footer_copyright: "Все права защищены.", footer_services_line: "HR · Финансы · ИТ · Маркетинг · Юридические услуги · Аналитика · Логистика"
+        },
+        en: {
+            nav_services: "services", nav_cases: "cases", nav_about: "about", nav_contacts: "contacts", nav_contact_btn: "discuss project",
+            hero_title: "HR Services", hero_desc: "HR outsourcing, recruiting, personnel assessment, HR branding.",
+            all_services: "All Services", more_link: "Learn More",
+            service_title: "HR Services", service_desc: "Proper human resource management is a critical success factor for business. Our HR services will help you attract, develop and retain the best specialists.",
+            what_included: "What is included:",
+            feature1_title: "HR Records Management", feature1_desc: "Maintaining HR records, preparing orders, maintaining employee personal files.",
+            feature2_title: "Mass and Targeted Recruiting", feature2_desc: "Search and selection of candidates for mass and key positions.",
+            feature3_title: "Onboarding and Training Development", feature3_desc: "Creating adaptation programs for new employees, developing corporate training.",
+            pricing_title: "Pricing", pack_start: "Starter Pack", pack_pro: "Professional Pack", pack_premium: "Premium Pack", price_on_request: "on request",
+            start1: "Consultations 2 times a month", start2: "Basic recruiting (up to 2 vacancies)", start3: "Template documents", start4: "Email support",
+            pro1: "Weekly consultations", pro2: "Full recruiting (up to 5 vacancies)", pro3: "Individual documents", pro4: "Priority support", pro5: "Training development",
+            prem1: "Daily consultations", prem2: "Unlimited recruiting", prem3: "Individual programs", prem4: "24/7 support", prem5: "Onboarding development", prem6: "Performance evaluation",
+            contact_title: "Ready to discuss your project?", contact_desc: "Contact us — we will offer a solution that strengthens your business.",
+            address: "📍 Khujand, Tajikistan", work_hours: "Mon-Fri: 9:00 – 18:00",
+            footer_desc: "Comprehensive business consulting. Helping companies grow and develop.",
+            footer_nav: "Navigation", footer_services_title: "Services", footer_contacts: "Contacts",
+            address_short: "Khujand, Tajikistan", footer_copyright: "All rights reserved.", footer_services_line: "HR · Finance · IT · Marketing · Legal Services · Analytics · Logistics"
+        }
+    };
+
+    let currentLang = localStorage.getItem('paykor_lang') || 'ru';
+
+    function applyLanguage(lang) {
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (translations[lang] && translations[lang][key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = translations[lang][key];
+                } else {
+                    el.textContent = translations[lang][key];
+                }
+            }
+        });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+        document.documentElement.lang = lang;
+        localStorage.setItem('paykor_lang', lang);
+        currentLang = lang;
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            applyLanguage(btn.getAttribute('data-lang'));
+        });
+    });
+
+    document.getElementById('logoLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = 'index.html?lang=' + currentLang;
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    if (urlLang && (urlLang === 'ru' || urlLang === 'en')) {
+        localStorage.setItem('paykor_lang', urlLang);
+        applyLanguage(urlLang);
+    } else {
+        applyLanguage(currentLang);
+    }
+
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) { header.classList.add('scrolled'); }
+        else { header.classList.remove('scrolled'); }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+    });
 </script>
 </body>
 </html>
