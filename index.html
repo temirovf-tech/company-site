@@ -279,7 +279,105 @@
         @media (min-width:768px) { .footer__social svg { width:22px; height:22px; } }
         .footer__bottom { border-top:1px solid rgba(255,255,255,0.06); padding-top:1.2rem; text-align:center; font-size:0.7rem; color:rgba(255,255,255,0.4); display:flex; flex-direction:column; gap:0.5rem; align-items:center; }
         @media (min-width:768px) { .footer__bottom { flex-direction:row; justify-content:space-between; font-size:0.85rem; padding-top:2rem; gap:1rem; } }
-
+                /* ===== EXPERT ===== */
+        .expert-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        @media (min-width:768px) {
+            .expert-card { padding: 2.5rem; }
+        }
+        .expert-card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        .expert-card__inner {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        @media (min-width:768px) {
+            .expert-card__inner {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 2.5rem;
+            }
+        }
+        .expert-card__image {
+            flex-shrink: 0;
+            width: 100%;
+            max-width: 260px;
+            margin: 0 auto;
+        }
+        @media (min-width:768px) {
+            .expert-card__image { max-width: 280px; margin: 0; }
+        }
+        .expert-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            object-fit: cover;
+            display: block;
+            border: 1px solid var(--border);
+        }
+        .expert-card__content {
+            flex: 1;
+        }
+        .expert-card__name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+        @media (min-width:768px) {
+            .expert-card__name { font-size: 1.8rem; }
+        }
+        .expert-card__position {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+        @media (min-width:768px) {
+            .expert-card__position { font-size: 1rem; margin-bottom: 1rem; }
+        }
+        .expert-card__desc {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+        @media (min-width:768px) {
+            .expert-card__desc { font-size: 1rem; margin-bottom: 1.2rem; }
+        }
+        .expert-card__details {
+            background: var(--light-bg);
+            padding: 0.8rem 1rem;
+            border-radius: var(--radius);
+            border-left: 3px solid var(--accent);
+        }
+        @media (min-width:768px) {
+            .expert-card__details { padding: 1.2rem 1.5rem; }
+        }
+        .expert-card__details p {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+        @media (min-width:768px) {
+            .expert-card__details p { font-size: 0.9rem; }
+        }
+        .expert-card__details strong {
+            color: var(--primary);
+        }
         .fade-up { opacity:0; transform:translateY(30px); transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
         .fade-up.visible { opacity:1; transform:translateY(0); }
     </style>
@@ -436,6 +534,30 @@
             </div>
         </div>
     </div>
+	<!-- ===== EXPERT ===== -->
+<section class="bg-light" id="expert">
+    <div class="container">
+        <div class="section-header fade-up">
+            <h2>Наши эксперты</h2>
+            <p>Профессионалы с международным опытом</p>
+        </div>
+        <div class="expert-card fade-up">
+            <div class="expert-card__inner">
+                <div class="expert-card__image">
+                    <img src="katerina-tudakova.jpg" alt="Катерина Тудакова" class="expert-img">
+                </div>
+                <div class="expert-card__content">
+                    <h3 class="expert-card__name">Катерина Тудакова</h3>
+                    <p class="expert-card__position">Ведущий маркетолог</p>
+                    <p class="expert-card__desc">Специалист по построению и масштабированию каналов прямых коммуникаций (Email, SMS, Telegram, Viber). Внедряет автоматизацию, сегментацию и триггерные цепочки.</p>
+                    <div class="expert-card__details">
+                        <p><strong>География проектов:</strong> Великобритания (BAT), Франция (UKRSIBBANK BNP Paribas), Узбекистан (KFC, маркетплейсы, клиники, гостиничный бизнес), Украина (Rozetka, медиа-агентства).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </section>
 
 <!-- ===== CASES ===== -->
